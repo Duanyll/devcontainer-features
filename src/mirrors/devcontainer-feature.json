@@ -1,0 +1,33 @@
+{
+    "name": "Mirrored Repositories",
+    "id": "mirrors",
+    "version": "1.0.0",
+    "description": "Use mirrored repositories to speed up package installation",
+    "options": {
+        "increaseAptRetry": {
+            "type": "boolean",
+            "default": true,
+            "description": "Increase the number of retries for apt-get for poor network connections"
+        },
+        "debian": {
+            "type": "string",
+            "default": "",
+            "description": "Debian mirror URL"
+        },
+        "ubuntu": {
+            "type": "string",
+            "default": "",
+            "description": "Ubuntu mirror URL"
+        },
+        "alpine": {
+            "type": "string",
+            "default": "https://dl-cdn.alpinelinux.org/alpine",
+            "description": "Alpine mirror URL"
+        },
+        "pip": {
+            "type": "string",
+            "default": "",
+            "description": "Python pip mirror URL"
+        }
+    }
+}
