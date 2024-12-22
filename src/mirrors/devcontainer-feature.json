@@ -1,7 +1,7 @@
 {
     "name": "Mirrored Repositories",
     "id": "mirrors",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Use mirrored repositories to speed up package installation",
     "options": {
         "increaseAptRetry": {
@@ -14,10 +14,20 @@
             "default": "",
             "description": "Debian mirror URL"
         },
+        "debianSecurity": {
+            "type": "string",
+            "default": "",
+            "description": "Debian security mirror URL (It is not recommended to use a mirror for security updates)"
+        },
         "ubuntu": {
             "type": "string",
             "default": "",
             "description": "Ubuntu mirror URL"
+        },
+        "ubuntuSecurity": {
+            "type": "string",
+            "default": "",
+            "description": "Ubuntu security mirror URL (It is not recommended to use a mirror for security updates)"
         },
         "alpine": {
             "type": "string",

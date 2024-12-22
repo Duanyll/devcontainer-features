@@ -1,0 +1,28 @@
+{
+    "name": "Make Directories",
+    "id": "mkdirs",
+    "version": "1.0.0",
+    "description": "Make directories in the container, owned by specified user (to avoid mounting permission issues)",
+    "options": {
+        "directories": {
+            "type": "string",
+            "default": "",
+            "description": "Comma-separated list of directories to create. Only the last directory in the path will be assigned the specified user and group."
+        },
+        "userid": {
+            "type": "string",
+            "default": "1000",
+            "description": "UID of the user that should own the directories"
+        },
+        "groupid": {
+            "type": "string",
+            "default": "1000",
+            "description": "GID of the group that should own the directories"
+        },
+        "mode": {
+            "type": "string",
+            "default": "755",
+            "description": "Permissions of the directories"
+        }
+    }
+}

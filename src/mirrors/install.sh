@@ -5,12 +5,16 @@ echo "Activating feature 'mirrors'"
 
 ALPINE=${ALPINE:-http://dl-cdn.alpinelinux.org/alpine}
 UBUNTU=${UBUNTU:-http://archive.ubuntu.com/ubuntu}
+UBUNTU_SECURITY=${UBUNTUSECURITY}
 DEBIAN=${DEBIAN:-http://deb.debian.org/debian}
+DEBIAN_SECURITY=${DEBIANSECURITY}
 
 # remove trailing slashes
 ALPINE=$(echo $ALPINE | sed 's:/*$::')
 UBUNTU=$(echo $UBUNTU | sed 's:/*$::')
+UBUNTU_SECURITY=$(echo $UBUNTU_SECURITY | sed 's:/*$::')
 DEBIAN=$(echo $DEBIAN | sed 's:/*$::')
+DEBIAN_SECURITY=$(echo $DEBIAN_SECURITY | sed 's:/*$::')
 
 replace_apt_sources() {
     echo "Replacing apt source $1 with $2"
@@ -49,10 +53,18 @@ elif [ -f /etc/os-release ]; then
     if [ "$ID" = "ubuntu" ]; then
         echo "Setting Ubuntu download source to ${UBUNTU}"
         replace_apt_sources "http://archive.ubuntu.com/ubuntu" "${UBUNTU}"
+        if [ -n "$UBUNTU_SECURITY" ]; then
+            echo "Setting Ubuntu security download source to ${UBUNTU_SECURITY}"
+            replace_apt_sources "http://security.ubuntu.com/ubuntu" "${UBUNTU_SECURITY}"
+        fi
         set_apt_retry
     elif [ "$ID" = "debian" ]; then
         echo "Setting Debian download source to ${DEBIAN}"
         replace_apt_sources "http://deb.debian.org/debian" "${DEBIAN}"
+        if [ -n "$DEBIAN_SECURITY" ]; then
+            echo "Setting Debian security download source to ${DEBIAN_SECURITY}"
+            replace_apt_sources "http://security.debian.org/debian-security" "${DEBIAN_SECURITY}"
+        fi
         set_apt_retry
     else 
         echo "Unknown OS: $ID, did not set mirrors"
